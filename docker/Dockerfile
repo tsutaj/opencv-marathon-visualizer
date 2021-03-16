@@ -3,12 +3,12 @@ FROM ubuntu:16.04
 ARG OPENCV_VERSION=3.4.13
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget git cmake nano g++ libeigen3-dev libgtk-3-dev qt5-default freeglut3-dev libvtk6-qt-dev libtbb-dev\
+    wget git cmake nano g++ libeigen3-dev libgtk-3-dev qt5-default freeglut3-dev libvtk6-qt-dev libtbb-dev \
     libjpeg-dev libjasper-dev libpng++-dev libtiff-dev libopenexr-dev libwebp-dev \
-    libhdf5-dev libopenblas-dev liblapacke-dev \
+    libhdf5-dev libopenblas-dev liblapacke-dev ca-certificates\
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz --no-check-certificate \
+RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz \
     && tar xfvz ${OPENCV_VERSION}.tar.gz
 RUN cd opencv-${OPENCV_VERSION} && mkdir build && cd build \
     && pwd && cmake -D CMAKE_BUILD_TYPE=Release \
